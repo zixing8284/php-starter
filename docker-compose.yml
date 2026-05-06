@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - vendor_data:/var/www/html/vendor
+    environment:
+      - SQLITE_DB_PATH=/var/www/html/data/app.db
+    restart: unless-stopped
+
+volumes:
+  vendor_data:

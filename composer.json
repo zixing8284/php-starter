@@ -1,0 +1,13 @@
+{
+    "name": "starter/php-app",
+    "description": "PHP quick-start with SQLite, Nginx, and Docker",
+    "type": "project",
+    "require": {
+        "php": ">=8.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
