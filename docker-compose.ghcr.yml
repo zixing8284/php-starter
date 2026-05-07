@@ -1,0 +1,11 @@
+services:
+  app:
+    image: ghcr.io/zixing8284/php-starter:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - app-data:/var/www/html/database
+    restart: unless-stopped
+
+volumes:
+  app-data:

@@ -3,3 +3,4 @@ database/
 .github
 *.md
 docker-compose.yml
+docker-compose.ghcr.yml

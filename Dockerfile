@@ -31,6 +31,8 @@ COPY . .
 
 RUN mkdir -p database && chown www-data:www-data database
 
+ENV SQLITE_DB_PATH=/var/www/html/database/app.db
+
 EXPOSE 80
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]

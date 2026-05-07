@@ -4,8 +4,16 @@
 
 ## 快速开始
 
+**本地构建：**
+
 ```bash
 docker compose up --build
+```
+
+**使用已发布镜像：**
+
+```bash
+docker compose -f docker-compose.ghcr.yml up -d
 ```
 
 访问 http://localhost:8080 演示页面。
@@ -26,6 +34,7 @@ docker compose up --build
 │   └── publish.yml          # GitHub Actions 镜像发布工作流
 ├── Dockerfile
 ├── docker-compose.yml
+├── docker-compose.ghcr.yml    # 使用已发布镜像启动
 └── composer.json
 ```
 
