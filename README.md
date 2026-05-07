@@ -21,6 +21,9 @@ docker compose up --build
 ├── docker/
 │   ├── nginx.conf          # Nginx 配置
 │   └── supervisord.conf    # 进程管理配置
+├── .dockerignore
+├── .github/workflows/
+│   └── publish.yml          # GitHub Actions 镜像发布工作流
 ├── Dockerfile
 ├── docker-compose.yml
 └── composer.json
@@ -28,14 +31,26 @@ docker compose up --build
 
 ## 常用命令
 
-| 操作       | 命令                                                 |
-| ---------- | ---------------------------------------------------- |
-| 构建并启动 | `docker compose up --build`                          |
-| 后台启动   | `docker compose up -d`                               |
-| 停止       | `docker compose down`                                |
-| 查看日志   | `docker compose logs -f`                             |
-| 进入容器   | `docker compose exec app sh`                         |
-| 安装依赖   | `docker compose exec app composer require <package>` |
+| 操作             | 命令                                                 |
+| ---------------- | ---------------------------------------------------- |
+| 构建并启动       | `docker compose up --build`                          |
+| 后台启动         | `docker compose up -d`                               |
+| 停止             | `docker compose down`                                |
+| 查看日志         | `docker compose logs -f`                             |
+| 进入容器         | `docker compose exec app sh`                         |
+| 安装依赖         | `docker compose exec app composer require <package>` |
+| 不使用国内源构建 | `docker compose build --build-arg MIRROR_CN=false`   |
+
+## 发布镜像到 GitHub Packages
+
+项目配置了 GitHub Actions，推送 `v` 开头的 tag 时自动构建并发布镜像到 `ghcr.io`。
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+镜像地址：`ghcr.io/<github用户名>/php-starter:latest`
 
 ## 添加 PHP 依赖
 
