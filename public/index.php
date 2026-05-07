@@ -4,7 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Database;
 
-$dbPath = getenv('SQLITE_DB_PATH') ?: __DIR__ . '/../data/app.db';
+$dbPath = getenv('SQLITE_DB_PATH') ?: __DIR__ . '/../database/app.db';
 $db = new Database($dbPath);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['name'])) {

@@ -1,7 +1,7 @@
 /vendor/
-/data/*.db
-/data/*.db-wal
-/data/*.db-shm
+/database/*.db
+/database/*.db-wal
+/database/*.db-shm
 .env
 .idea/
 .vscode/
