@@ -4,19 +4,19 @@
 
 ## 快速开始
 
-**本地构建：**
+**本地构建**（开发用，支持热重载）：
 
 ```bash
 docker compose up --build
 ```
 
-**使用已发布镜像：**
+**或使用已发布镜像**：
 
 ```bash
 docker compose -f docker-compose.ghcr.yml up -d
 ```
 
-访问 http://localhost:8080 演示页面。
+访问 http://localhost:8080。
 
 ## 项目结构
 
@@ -50,17 +50,6 @@ docker compose -f docker-compose.ghcr.yml up -d
 | 安装依赖         | `docker compose exec app composer require <package>` |
 | 不使用国内源构建 | `docker compose build --build-arg MIRROR_CN=false`   |
 
-## 发布镜像到 GitHub Packages
-
-项目配置了 GitHub Actions，推送 `v` 开头的 tag 时自动构建并发布镜像到 `ghcr.io`。
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-镜像地址：`ghcr.io/<github用户名>/php-starter:latest`
-
 ## 添加 PHP 依赖
 
 在容器内执行 Composer：
@@ -89,16 +78,31 @@ docker compose exec app php -i
 
 编辑 `docker/php.ini` 文件，重新构建后生效。PHP 会自动加载 `conf.d/` 目录下所有 `.ini` 文件。
 
-## 开发说明
+## 说明
 
-- 修改 `public/` 或 `src/` 下的文件后刷新浏览器即可生效（热重载）
-- SQLite 数据库文件在 `database/app.db`，通过 volume 挂载到主机，重新构建或重启容器均不会丢失数据
+- SQLite 数据库文件在 `database/app.db`，通过 volume 挂载到主机，重启不丢失数据
 - Nginx 只暴露 `public/` 目录，`src/` 和 `database/` 不可直接访问
+- 本地构建方式下，修改 `public/` 或 `src/` 的文件后刷新浏览器即可生效（热重载）
 
-## 技术栈
+## 容器环境
 
-- PHP 8.4 (FPM)
-- SQLite (PDO)
+- PHP 8.4 (FPM) + pdo_sqlite
+- SQLite
 - Nginx
-- Composer
-- Docker + Supervisord
+- Composer 2
+- Supervisord（进程管理）
+
+---
+
+## 维护者
+
+**发布镜像到 GitHub Packages：**
+
+项目配置了 GitHub Actions，推送 `v` 开头的 tag 时自动构建并发布镜像到 `ghcr.io`。
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+镜像地址：`ghcr.io/<github用户名>/php-starter:latest`
